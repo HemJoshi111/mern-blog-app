@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+
+const baseURL =
+  process.env.NODE_ENV === 'production'
+    ? `${process.env.REACT_APP_API_URL}/api` // Live backend
+    : '/api'; // Development backend (via proxy)
+
+
 const api = axios.create({
-  baseURL: '/api', // This works because of the "proxy" in package.json
+  baseURL: baseURL, // This works because of the "proxy" in package.json
 });
 
 // Request Interceptor
